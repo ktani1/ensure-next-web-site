@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ENSURE NEXT | JSOX IT監査・AIガバナンス支援</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap');
+        
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            color: #1e293b;
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+        }
+
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .text-balanced {
+            word-break: keep-all;
+            overflow-wrap: anywhere;
+        }
+
+        /* Animations */
+        @keyframes fade-in-up {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes subtle-zoom {
+            from { transform: scale(1); }
+            to { transform: scale(1.05); }
+        }
+        .animate-fade-in-up {
+            animation: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+        }
+        .animate-subtle-zoom {
+            animation: subtle-zoom 20s ease-in-out infinite alternate;
+        }
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-400 { animation-delay: 400ms; }
+        .delay-500 { animation-delay: 500ms; }
+    </style>
+</head>
+<body class="bg-white">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4 border-b border-transparent">
+        <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-2 group">
+                <i data-lucide="shield-check" class="text-blue-600 w-7 h-7 group-hover:scale-110 transition-transform"></i>
+                <span class="text-xl font-black tracking-tight text-slate-900 uppercase">ENSURE NEXT</span>
+            </a>
+
+            <div class="hidden md:flex items-center gap-8 text-sm font-bold text-slate-600">
+                <a href="#features" class="hover:text-blue-600 transition-colors">強み</a>
+                <a href="#services" class="hover:text-blue-600 transition-colors">サービス</a>
+                <a href="#pricing" class="hover:text-blue-600 transition-colors">料金の目安</a>
+                <a href="#blog" class="hover:text-blue-600 transition-colors">公式note</a>
+                <a href="#about" class="hover:text-blue-600 transition-colors">会社概要</a>
+                <a href="mailto:kazuma.tani@ensurenext.com" class="bg-slate-900 text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-blue-600 transition-all shadow-md hover:shadow-lg active:scale-95 flex items-center gap-2">
+                    <i data-lucide="mail" class="w-4 h-4"></i> お問い合わせ
+                </a>
+            </div>
+
+            <button class="md:hidden text-slate-900" id="menu-btn">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white border-b border-slate-200 p-6 flex flex-col gap-4 shadow-xl">
+            <a href="#features" class="text-base font-bold text-slate-800 py-3 border-b border-slate-100">強み</a>
+            <a href="#services" class="text-base font-bold text-slate-800 py-3 border-b border-slate-100">サービス</a>
+            <a href="#pricing" class="text-base font-bold text-slate-800 py-3 border-b border-slate-100">料金の目安</a>
+            <a href="#blog" class="text-base font-bold text-slate-800 py-3 border-b border-slate-100">公式note</a>
+            <a href="#about" class="text-base font-bold text-slate-800 py-3 border-b border-slate-100">会社概要</a>
+            <a href="mailto:kazuma.tani@ensurenext.com" class="mt-4 bg-blue-600 text-white text-center py-4 rounded-lg text-sm font-bold flex justify-center items-center gap-2">
+                <i data-lucide="mail" class="w-4 h-4"></i> お問い合わせ
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden bg-slate-50">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 z-0 overflow-hidden bg-slate-100">
+            <img src="./office_people_working.png" alt="Office working" class="w-full h-full object-cover object-center opacity-90 animate-subtle-zoom">
+            <div class="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent"></div>
+        </div>
+
+        <div class="max-w-6xl mx-auto px-6 relative z-10 flex flex-col items-center md:items-start text-center md:text-left">
+            <div class="max-w-3xl">
+                <h1 class="text-4xl md:text-6xl font-black text-slate-900 mb-6 leading-[1.2] tracking-tight animate-fade-in-up delay-100">
+                    JSOX IT監査を、<br />
+                    <span class="text-blue-600">適正価格で。</span>
+                </h1>
+                <p class="text-base md:text-lg text-slate-600 mb-10 leading-relaxed font-medium text-balanced animate-fade-in-up delay-200">
+                    大手企業・監査法人出身の有資格者が、IT統制の戦略立案から評価までを直接支援。<br class="hidden md:block" />
+                    ジュニアスタッフを介さない専門家直結の体制で、オンラインを中心として間接費を削減し、貴社に高品質なサービスを低コストで提供します。
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto animate-fade-in-up delay-300">
+                    <a href="#pricing" class="px-8 py-4 bg-blue-600 text-white rounded-full font-bold text-base hover:bg-blue-700 transition-all flex items-center justify-center gap-2 shadow-lg hover:shadow-xl hover:-translate-y-0.5">
+                        料金の目安を見る <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                    </a>
+                    <a href="mailto:kazuma.tani@ensurenext.com" class="px-8 py-4 border-2 border-slate-200 text-slate-700 rounded-full font-bold text-base bg-white hover:border-slate-300 hover:bg-slate-50 transition-all flex items-center justify-center gap-2">
+                        <i data-lucide="mail" class="w-5 h-5"></i> お問い合わせ
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partner / Trust Section -->
+    <section class="py-10 border-b border-slate-200 bg-white relative z-20">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col items-center justify-center gap-6">
+                <span class="text-sm font-bold text-slate-500 tracking-[0.2em] mb-2 animate-fade-in-up delay-400">パートナー & 連携機関</span>
+                <a href="https://adpisa.si.aoyama.ac.jp/adpisa-cpa/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-5 group opacity-80 hover:opacity-100 transition-opacity animate-fade-in-up delay-500">
+                    <i data-lucide="graduation-cap" class="w-12 h-12 text-slate-500 group-hover:text-slate-700 transition-colors shrink-0"></i>
+                    <div class="text-left">
+                        <div class="text-base font-bold text-slate-600 mb-1.5 leading-none tracking-tight">青山学院社会情報学部 履修プログラム</div>
+                        <div class="text-2xl font-black text-slate-800 tracking-tight flex items-baseline gap-2 leading-none">
+                            ADPISA CPA
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Strength Section -->
+    <section id="features" class="py-24 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-black text-slate-900 mb-4 tracking-tight">ENSURE NEXTの強み</h2>
+                <div class="w-16 h-1 bg-blue-600 mx-auto rounded-full"></div>
+            </div>
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="space-y-5">
+                    <div class="w-14 h-14 bg-blue-50 text-blue-600 flex items-center justify-center rounded-2xl">
+                        <i data-lucide="user-check" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 tracking-tight">プロによる直接支援</h3>
+                    <p class="text-slate-600 leading-relaxed font-medium text-balanced">
+                        実務経験豊かな専門家が、最初から最後まで貴社に寄り添います。
+                    </p>
+                </div>
+                <div class="space-y-5">
+                    <div class="w-14 h-14 bg-blue-50 text-blue-600 flex items-center justify-center rounded-2xl">
+                        <i data-lucide="zap" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 tracking-tight">本質的なコスト最適化</h3>
+                    <p class="text-slate-600 leading-relaxed font-medium text-balanced">
+                        形式的な無駄を削ぎ落とし、組織にとって真に価値ある投資を実現します。
+                    </p>
+                </div>
+                <div class="space-y-5">
+                    <div class="w-14 h-14 bg-blue-50 text-blue-600 flex items-center justify-center rounded-2xl">
+                        <i data-lucide="shield-check" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 tracking-tight">監査対応のパートナー</h3>
+                    <p class="text-slate-600 leading-relaxed font-medium text-balanced">
+                        外部監査人との架け橋となり、対応工数と心理的負担を解消します。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 bg-slate-50 border-y border-slate-100">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-black text-slate-900 mb-4 tracking-tight">サービス内容</h2>
+                <div class="w-16 h-1 bg-blue-600 mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                <!-- Service Items -->
+                <div class="p-6 bg-white border border-slate-200 rounded-xl flex items-center gap-4 hover:border-blue-400 hover:shadow-lg hover:-translate-y-1 transition-all group">
+                    <div class="w-12 h-12 rounded-full bg-slate-50 group-hover:bg-blue-50 flex items-center justify-center shrink-0 transition-colors">
+                        <i data-lucide="check" class="text-slate-400 group-hover:text-blue-600 w-6 h-6 transition-colors"></i>
+                    </div>
+                    <span class="font-bold text-slate-800 text-base">JSOX IT統制評価戦略の立案</span>
+                </div>
+                
+                <div class="p-6 bg-white border border-slate-200 rounded-xl flex items-center gap-4 hover:border-blue-400 hover:shadow-lg hover:-translate-y-1 transition-all group">
+                    <div class="w-12 h-12 rounded-full bg-slate-50 group-hover:bg-blue-50 flex items-center justify-center shrink-0 transition-colors">
+                        <i data-lucide="check" class="text-slate-400 group-hover:text-blue-600 w-6 h-6 transition-colors"></i>
+                    </div>
+                    <span class="font-bold text-slate-800 text-base">IT統制評価支援（ITGC / ITAC）</span>
+                </div>
+
+                <div class="p-6 bg-white border border-slate-200 rounded-xl flex items-center gap-4 hover:border-blue-400 hover:shadow-lg hover:-translate-y-1 transition-all group">
+                    <div class="w-12 h-12 rounded-full bg-slate-50 group-hover:bg-blue-50 flex items-center justify-center shrink-0 transition-colors">
+                        <i data-lucide="check" class="text-slate-400 group-hover:text-blue-600 w-6 h-6 transition-colors"></i>
+                    </div>
+                    <span class="font-bold text-slate-800 text-base">監査法人との協議・対応代行</span>
+                </div>
+
+                <div class="p-6 bg-white border border-slate-200 rounded-xl flex items-center gap-4 hover:border-blue-400 hover:shadow-lg hover:-translate-y-1 transition-all group">
+                    <div class="w-12 h-12 rounded-full bg-slate-50 group-hover:bg-blue-50 flex items-center justify-center shrink-0 transition-colors">
+                        <i data-lucide="check" class="text-slate-400 group-hover:text-blue-600 w-6 h-6 transition-colors"></i>
+                    </div>
+                    <span class="font-bold text-slate-800 text-base">SOC1レポートの評価支援</span>
+                </div>
+
+                <div class="p-6 bg-white border border-slate-200 rounded-xl flex items-center gap-4 hover:border-blue-400 hover:shadow-lg hover:-translate-y-1 transition-all group">
+                    <div class="w-12 h-12 rounded-full bg-slate-50 group-hover:bg-blue-50 flex items-center justify-center shrink-0 transition-colors">
+                        <i data-lucide="check" class="text-slate-400 group-hover:text-blue-600 w-6 h-6 transition-colors"></i>
+                    </div>
+                    <span class="font-bold text-slate-800 text-base">IT監査人材育成支援</span>
+                </div>
+
+                <div class="p-6 bg-white border border-slate-200 rounded-xl flex items-center gap-4 hover:border-blue-400 hover:shadow-lg hover:-translate-y-1 transition-all group">
+                    <div class="w-12 h-12 rounded-full bg-slate-50 group-hover:bg-blue-50 flex items-center justify-center shrink-0 transition-colors">
+                        <i data-lucide="check" class="text-slate-400 group-hover:text-blue-600 w-6 h-6 transition-colors"></i>
+                    </div>
+                    <span class="font-bold text-slate-800 text-base">AIガバナンス構築・リスク管理</span>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <a href="mailto:kazuma.tani@ensurenext.com" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-slate-900 text-white rounded-full font-bold text-sm hover:bg-slate-800 transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5">
+                    貴社に合う支援内容を相談する <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-24 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-black text-slate-900 mb-4 tracking-tight">料金の目安</h2>
+                <div class="w-16 h-1 bg-blue-600 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8 items-start">
+                
+                <!-- Plan 1 -->
+                <div class="border border-slate-200 rounded-2xl p-8 hover:shadow-xl transition-shadow bg-slate-50">
+                    <h3 class="text-xl font-bold text-slate-800 mb-3 tracking-tight">アドバイザリープラン</h3>
+                    <p class="text-sm font-medium text-slate-500 mb-8 h-10 leading-relaxed">
+                        自社で評価を内製化し、専門家の助言が必要な企業様向け
+                    </p>
+                    <div class="flex flex-col mb-8 pb-8 border-b border-slate-200">
+                        <div class="flex items-baseline gap-1">
+                            <span class="text-lg font-bold text-slate-800">月額</span>
+                            <span class="text-5xl font-black text-slate-900 tracking-tighter">15</span>
+                            <span class="text-base font-bold text-slate-600">万円〜</span>
+                        </div>
+                    </div>
+                    <ul class="space-y-4 mb-10 text-sm font-medium text-slate-700">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-blue-600 shrink-0"></i>
+                            <span class="pt-0.5">月1回の定例ミーティング</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-blue-600 shrink-0"></i>
+                            <span class="pt-0.5">チャット・メールでの随時相談</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-blue-600 shrink-0"></i>
+                            <span class="pt-0.5">監査法人対応に関する助言</span>
+                        </li>
+                    </ul>
+                    <a href="mailto:kazuma.tani@ensurenext.com" class="block w-full py-4 text-center border-2 border-slate-200 text-slate-700 bg-white font-bold rounded-xl hover:border-slate-300 hover:bg-slate-50 transition-colors">
+                        詳細を問い合わせる
+                    </a>
+                </div>
+
+                <!-- Plan 2 (Popular) -->
+                <div class="border-2 border-blue-600 rounded-2xl p-8 shadow-2xl bg-white relative lg:-translate-y-4">
+                    <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-600 text-white px-5 py-1.5 rounded-full text-xs font-black uppercase tracking-widest shadow-md">
+                        人気プラン
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-3 tracking-tight">評価代行プラン</h3>
+                    <p class="text-sm font-medium text-slate-500 mb-8 h-10 leading-relaxed">
+                        IT統制評価の専門リソースが不足している企業様向け
+                    </p>
+                    <div class="flex flex-col mb-8 pb-8 border-b border-slate-100">
+                        <div class="flex items-baseline gap-1 mb-2">
+                            <span class="text-lg font-bold text-slate-800">年間</span>
+                            <span class="text-5xl font-black text-slate-900 tracking-tighter">250</span>
+                            <span class="text-base font-bold text-slate-600">万円〜</span>
+                        </div>
+                        <div class="inline-flex self-start bg-blue-50 text-blue-700 px-3 py-1 rounded text-xs font-bold">
+                            大手監査法人の1/3以下の水準
+                        </div>
+                    </div>
+                    <ul class="space-y-4 mb-10 text-sm font-medium text-slate-700">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-blue-600 shrink-0"></i>
+                            <span class="pt-0.5">ITGC/ITAC評価のフルアウトソース</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-blue-600 shrink-0"></i>
+                            <span class="pt-0.5">評価調書の作成</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-blue-600 shrink-0"></i>
+                            <span class="pt-0.5">改善提案レポートの提出</span>
+                        </li>
+                    </ul>
+                    <a href="mailto:kazuma.tani@ensurenext.com" class="block w-full py-4 text-center bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-all shadow-md hover:shadow-xl hover:-translate-y-0.5">
+                        見積もりを依頼する
+                    </a>
+                </div>
+
+                <!-- Plan 3 -->
+                <div class="border border-slate-200 rounded-2xl p-8 hover:shadow-xl transition-shadow bg-white">
+                    <h3 class="text-xl font-bold text-slate-800 mb-3 tracking-tight">監査対応フルサポート</h3>
+                    <p class="text-sm font-medium text-slate-500 mb-8 h-10 leading-relaxed">
+                        協議から評価まですべてプロにお任せしたい企業様向け
+                    </p>
+                    <div class="flex flex-col mb-8 pb-8 border-b border-slate-200">
+                        <div class="flex items-baseline gap-1 mb-2">
+                            <span class="text-lg font-bold text-slate-800">年間</span>
+                            <span class="text-5xl font-black text-slate-900 tracking-tighter">450</span>
+                            <span class="text-base font-bold text-slate-600">万円〜</span>
+                        </div>
+                        <div class="inline-flex self-start bg-slate-100 text-slate-600 px-3 py-1 rounded text-xs font-bold">
+                            対象スコープにより個別お見積り
+                        </div>
+                    </div>
+                    <ul class="space-y-4 mb-10 text-sm font-medium text-slate-700">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-blue-600 shrink-0"></i>
+                            <span class="pt-0.5">評価代行プランの全内容</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-blue-600 shrink-0"></i>
+                            <span class="pt-0.5">監査法人との協議代行</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-blue-600 shrink-0"></i>
+                            <span class="pt-0.5">指摘事項の改善計画策定支援</span>
+                        </li>
+                    </ul>
+                    <a href="mailto:kazuma.tani@ensurenext.com" class="block w-full py-4 text-center border-2 border-slate-200 text-slate-700 bg-white font-bold rounded-xl hover:border-slate-300 hover:bg-slate-50 transition-colors">
+                        詳細を問い合わせる
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- Pricing Note -->
+            <div class="mt-12 max-w-3xl mx-auto p-6 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium text-slate-600 flex items-start gap-4">
+                <i data-lucide="info" class="w-5 h-5 text-blue-600 shrink-0 mt-0.5"></i>
+                <div class="leading-relaxed text-balanced">
+                    <p class="font-bold text-slate-800 mb-1 tracking-tight">お見積りについて</p>
+                    実際の金額は、評価対象システム数、統制数、およびシステムの形態（パッケージ、自社開発、クラウド、オンプレミス等）を総合的に評価し算定させていただきます。まずはお気軽にご相談ください。
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Note/Blog Section -->
+    <section id="blog" class="py-24 bg-slate-50 border-y border-slate-100">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-12 gap-6">
+                <div>
+                    <h2 class="text-3xl font-black text-slate-900 mb-3 tracking-tight">公式note / コラム</h2>
+                    <p class="text-base font-medium text-slate-600">IT監査の実務ノウハウやガバナンスの最新トレンドを発信しています。</p>
+                </div>
+                <a href="https://note.com/notes" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-blue-600 font-bold bg-blue-50 px-5 py-2.5 rounded-full hover:bg-blue-100 transition-colors group">
+                    note公式をフォローする
+                    <i data-lucide="external-link" class="w-4 h-4 group-hover:-mt-1 group-hover:translate-x-1 transition-all"></i>
+                </a>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Article 1 -->
+                <a href="https://note.com/notes" target="_blank" rel="noopener noreferrer" class="group flex flex-col bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all">
+                    <div class="h-48 bg-slate-100 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-blue-600 opacity-0 group-hover:opacity-5 transition-opacity"></div>
+                        <i data-lucide="book-open" class="w-12 h-12 text-slate-300 group-hover:text-blue-500 transition-colors"></i>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="text-xs font-black text-blue-600 tracking-wider mb-3 uppercase">JSOX</div>
+                        <h3 class="font-bold text-slate-900 text-lg mb-3 tracking-tight group-hover:text-blue-600 transition-colors line-clamp-2">IT全般統制（ITGC）でよくある指摘事項と対策のポイント</h3>
+                        <p class="text-sm font-medium text-slate-500 mb-6 line-clamp-2 flex-grow">監査法人から指摘を受けやすいアクセス管理や変更管理の課題と、その具体的な対策について解説します...</p>
+                        <div class="text-xs font-bold text-slate-400">2026.03.11</div>
+                    </div>
+                </a>
+
+                <!-- Article 2 -->
+                <a href="https://note.com/notes" target="_blank" rel="noopener noreferrer" class="group flex flex-col bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all">
+                    <div class="h-48 bg-slate-100 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-blue-600 opacity-0 group-hover:opacity-5 transition-opacity"></div>
+                        <i data-lucide="cpu" class="w-12 h-12 text-slate-300 group-hover:text-blue-500 transition-colors"></i>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="text-xs font-black text-blue-600 tracking-wider mb-3 uppercase">AI Governance</div>
+                        <h3 class="font-bold text-slate-900 text-lg mb-3 tracking-tight group-hover:text-blue-600 transition-colors line-clamp-2">生成AI時代に求められるIT統制の新しいアプローチ</h3>
+                        <p class="text-sm font-medium text-slate-500 mb-6 line-clamp-2 flex-grow">業務でのAI活用が進む中、リスクをコントロールしながらイノベーションを阻害しないためのガバナンス構築のコツ...</p>
+                        <div class="text-xs font-bold text-slate-400">2026.02.25</div>
+                    </div>
+                </a>
+
+                <!-- Article 3 -->
+                <a href="https://note.com/notes" target="_blank" rel="noopener noreferrer" class="group flex flex-col bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all">
+                    <div class="h-48 bg-slate-100 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-blue-600 opacity-0 group-hover:opacity-5 transition-opacity"></div>
+                        <i data-lucide="shield" class="w-12 h-12 text-slate-300 group-hover:text-blue-500 transition-colors"></i>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="text-xs font-black text-blue-600 tracking-wider mb-3 uppercase">SOC1 / SaaS</div>
+                        <h3 class="font-bold text-slate-900 text-lg mb-3 tracking-tight group-hover:text-blue-600 transition-colors line-clamp-2">SaaS利用における委託先評価（SOC1等）の実務対応</h3>
+                        <p class="text-sm font-medium text-slate-500 mb-6 line-clamp-2 flex-grow">クラウドサービスの利用拡大に伴い重要性を増している、委託先の内部統制報告書の読み込みと自社統制へのマッピング...</p>
+                        <div class="text-xs font-bold text-slate-400">2026.01.18</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-white">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-black text-slate-900 mb-4 tracking-tight">会社概要</h2>
+                <div class="w-16 h-1 bg-blue-600 mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="bg-white rounded-2xl p-8 md:p-12 border border-slate-200 shadow-xl shadow-slate-200/50">
+                <dl class="grid grid-cols-1 md:grid-cols-3 gap-y-8 text-base font-medium">
+                    <dt class="font-bold text-slate-500 md:border-b-0 border-b border-slate-100 pb-2 md:pb-0">会社名</dt>
+                    <dd class="md:col-span-2 text-slate-900 font-bold tracking-tight pb-2 md:pb-0">ENSURE NEXT 株式会社</dd>
+                    
+                    <dt class="font-bold text-slate-500 md:border-b-0 border-b border-slate-100 pb-2 md:pb-0">設立</dt>
+                    <dd class="md:col-span-2 text-slate-800 pb-2 md:pb-0">2026年5月</dd>
+                    
+                    <dt class="font-bold text-slate-500 md:border-b-0 border-b border-slate-100 pb-2 md:pb-0 pt-2">代表者</dt>
+                    <dd class="md:col-span-2 text-slate-800 pb-2 md:pb-0 flex items-center gap-6">
+                        <img src="./ceo_icon.png" alt="谷 一磨" class="w-20 h-20 md:w-24 md:h-24 rounded-2xl shadow-md border border-slate-200 shrink-0 object-cover object-center">
+                        <div class="leading-relaxed text-balanced">
+                            <span class="font-bold text-lg">谷 一磨</span><br>
+                            <span class="text-xs text-slate-500 font-bold block mt-1">（米国公認会計士、公認情報システム監査人 CISA、AAIA AI監査人）</span>
+                        </div>
+                    </dd>
+                    
+                    <dt class="font-bold text-slate-500 md:border-b-0 border-b border-slate-100 pb-2 md:pb-0">事業内容</dt>
+                    <dd class="md:col-span-2 text-slate-800 pb-2 md:pb-0 leading-relaxed text-balanced">
+                        <div class="font-black text-slate-900 tracking-tight mb-2">Digital Governance & Strategy</div>
+                        <ul class="space-y-1.5">
+                            <li class="flex items-start">
+                                <span class="font-bold text-slate-700 w-28 shrink-0">Consulting</span>
+                                <span class="text-slate-300 px-2 shrink-0 hidden sm:inline">|</span>
+                                <span>AI・ITガバナンス、内部統制、ISO認証取得支援</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="font-bold text-slate-700 w-28 shrink-0">Development</span>
+                                <span class="text-slate-300 px-2 shrink-0 hidden sm:inline">|</span>
+                                <span>ITガバナンス最適化システムの構築</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="font-bold text-slate-700 w-28 shrink-0">Education</span>
+                                <span class="text-slate-300 px-2 shrink-0 hidden sm:inline">|</span>
+                                <span>次世代ITガバナンスリーダー育成・組織変革の教育支援</span>
+                            </li>
+                        </ul>
+                    </dd>
+                    
+                    <dt class="font-bold text-slate-500 md:border-b-0 border-b border-slate-100 pb-2 md:pb-0">所在地</dt>
+                    <dd class="md:col-span-2 text-slate-800 pb-2 md:pb-0">東京都渋谷区代々木 1-21-16 アジリア代々木J's</dd>
+                    
+                    <dt class="font-bold text-slate-500">お問い合わせ</dt>
+                    <dd class="md:col-span-2">
+                        <a href="mailto:kazuma.tani@ensurenext.com" class="text-blue-600 font-bold hover:underline break-all flex items-center gap-2 inline-flex">
+                            <i data-lucide="mail" class="w-4 h-4"></i> kazuma.tani@ensurenext.com
+                        </a>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 bg-slate-900 border-t border-slate-800 text-white relative overflow-hidden">
+        <!-- Decoration -->
+        <div class="absolute top-0 right-0 -mr-40 -mt-20 w-96 h-96 rounded-full bg-blue-600/10 blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 -ml-40 -mb-20 w-96 h-96 rounded-full bg-blue-400/10 blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+            <h2 class="text-3xl md:text-4xl font-black mb-6 tracking-tight">最高品質のIT統制評価を、<br class="md:hidden">貴社にも。</h2>
+            <p class="text-slate-300 mb-10 text-base md:text-lg leading-relaxed font-medium max-w-2xl mx-auto text-balanced">
+                現状の評価体制やコストに課題を感じている方は、ぜひ一度ご相談ください。<br class="hidden md:block">
+                実務経験豊富なプロフェッショナルが、貴社に最適なアプローチをご提案します。
+            </p>
+            <a href="mailto:kazuma.tani@ensurenext.com" class="inline-flex items-center justify-center gap-2 px-10 py-5 bg-blue-600 text-white rounded-full font-bold text-base md:text-lg hover:bg-blue-500 transition-all shadow-xl hover:shadow-cyan-500/20 hover:-translate-y-1">
+                無料で相談・見積もりを依頼する <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 py-12 text-slate-400 text-sm">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8 mb-10">
+                <a href="#" class="flex items-center gap-2 text-white opacity-90 hover:opacity-100 transition-opacity">
+                    <i data-lucide="shield-check" class="w-6 h-6"></i>
+                    <span class="text-xl font-black tracking-tighter uppercase">ENSURE NEXT</span>
+                </a>
+                <div class="flex flex-wrap justify-center gap-x-8 gap-y-4 font-bold text-xs tracking-wider">
+                    <a href="./privacy.html" class="hover:text-white transition-colors">プライバシーポリシー</a>
+                    <a href="./terms.html" class="hover:text-white transition-colors">利用規約</a>
+                    <a href="mailto:kazuma.tani@ensurenext.com" class="hover:text-white transition-colors flex items-center gap-1.5">
+                        <i data-lucide="mail" class="w-3.5 h-3.5"></i> お問い合わせ
+                    </a>
+                </div>
+            </div>
+            <div class="text-center md:text-left text-xs font-medium text-slate-500 relative flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="w-full md:absolute border-t border-slate-800 top-1/2 -z-0"></div>
+                <div class="bg-slate-950 pr-4 relative z-10">&copy; 2026 ENSURE NEXT Inc. All rights reserved.</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Init Lucide icons
+        lucide.createIcons();
+
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('glass-nav');
+                navbar.classList.remove('border-transparent', 'py-4');
+                navbar.classList.add('py-3');
+            } else {
+                navbar.classList.remove('glass-nav', 'py-3');
+                navbar.classList.add('border-transparent', 'py-4');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    // Close mobile menu if open
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
